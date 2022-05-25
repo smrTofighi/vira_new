@@ -8,10 +8,11 @@ class SolidColors{
   static const Color bottomNavon = Color(0xff5d01d2);
   static const Color bottomNavoff = Color(0xffffffff);
   static const Color mostTextColor = Color(0xff000000);
-  static const Color dividerColor = Color(0xFF13262F);
+  static const Color dividerColor = Color.fromARGB(200, 95, 95, 95);
   static const Color hashTagColor = Color(0xFFF5F1ED);
-  static const Color silver = Color.fromARGB(255, 233, 233, 233);
+  static const Color bgProfileFooter = Color.fromARGB(255, 233, 233, 233);
   static const Color appBar = Color.fromARGB(255, 233, 233, 233);
+  static const Color bgButtonProfile = Color.fromARGB(255, 255, 255, 255);
 }
 
 class GradiantColors{

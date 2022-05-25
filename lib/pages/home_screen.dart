@@ -3,14 +3,22 @@ import 'package:vira_app/component.dart';
 import 'package:vira_app/constant/string.dart';
 import '../constant/color.dart';
 import '../models/data_models.dart';
+//! Imports  -----------------------
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key, required this.size, required this.textTheme})
-      : super(key: key);
+  const HomeScreen({
+    Key? key,
+    required this.size,
+    required this.textTheme,
+  }) : super(key: key);
+  //* Constructor ---------------
+
   final TextTheme textTheme;
   final Size size;
+  //* Variables -----------------
   @override
   Widget build(BuildContext context) {
+    //? Return ------------------
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Padding(
@@ -18,26 +26,30 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             const ViraSizedBox(height: 6.0),
+            //? ----------------------------
+
             MostNewsText(textTheme: textTheme),
+
             const ViraSizedBox(height: 6.0),
+            //? ----------------------------
             MoreNewsPostList(size: size, textTheme: textTheme),
+
             const ViraSizedBox(height: 6),
+            //? ----------------------------
             const HashTagList(),
+
             const ViraSizedBox(height: 8.0),
+            //? ----------------------------
             NewText(textTheme: textTheme),
+
             NewPostList(size: size, textTheme: textTheme),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  Strings.newPadCast,
-                  style: textTheme.headline2,
-                ),
-              ),
-            ),
+
+            NewPadCast(textTheme: textTheme),
+
             NewPadCastList(size: size),
+
             const ViraSizedBox(height: 70.0),
+            //? ----------------------------
           ],
         ),
       ),
@@ -46,6 +58,29 @@ class HomeScreen extends StatelessWidget {
 }
 
 //! WIdgets -----------------
+
+class NewPadCast extends StatelessWidget {
+  const NewPadCast({
+    Key? key,
+    required this.textTheme,
+  }) : super(key: key);
+
+  final TextTheme textTheme;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: Text(
+          Strings.newPadCast,
+          style: textTheme.headline2,
+        ),
+      ),
+    );
+  }
+}
 
 class HashTagList extends StatelessWidget {
   const HashTagList({

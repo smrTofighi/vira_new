@@ -47,7 +47,7 @@ class _MainScreenState extends State<MainScreen> {
                 height: 50,
               ),
               Text(
-                '12 اردیبهشت',
+                '01/03/04',
                 style: textTheme.bodyText1,
               ),
             ],

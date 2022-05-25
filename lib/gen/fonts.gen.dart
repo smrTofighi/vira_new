@@ -10,4 +10,7 @@ class FontFamily {
 
   /// Font family: Fanavari
   static const String fanavari = 'Fanavari';
+
+  /// Font family: Samim
+  static const String samim = 'Samim';
 }

@@ -143,7 +143,7 @@ class BottomNavigation extends StatelessWidget {
                     onPressed: () => changeScreen(4),
                     icon: ImageIcon(
                       index == 4 ? Assets.icons.userFill : Assets.icons.user,
-                      size: index == 4 ? 24 : 20,
+                      size: 20,
                     ),
                   ),
                 ),
@@ -164,7 +164,7 @@ class BottomNavigation extends StatelessWidget {
                       index == 3
                           ? Assets.icons.bookmarkFill
                           : Assets.icons.bookmark,
-                      size: index == 3 ? 24 : 20,
+                      size: 20,
                     ),
                   ),
                 ),
@@ -183,7 +183,7 @@ class BottomNavigation extends StatelessWidget {
                     onPressed: () => changeScreen(2),
                     icon: ImageIcon(
                       index == 2 ? Assets.icons.addFill : Assets.icons.add,
-                      size: index == 2 ? 24 : 20,
+                      size: 20,
                     ),
                   ),
                 ),
@@ -204,7 +204,7 @@ class BottomNavigation extends StatelessWidget {
                       index == 1
                           ? Assets.icons.searchFill
                           : Assets.icons.search,
-                      size: index == 1 ? 24 : 20,
+                      size: 20,
                     ),
                   ),
                 ),
@@ -223,7 +223,7 @@ class BottomNavigation extends StatelessWidget {
                     onPressed: () => changeScreen(0),
                     icon: ImageIcon(
                       index == 0 ? Assets.icons.homeFill : Assets.icons.home,
-                      size: index == 0 ? 24 : 20,
+                      size: 20,
                     ),
                   ),
                 ),

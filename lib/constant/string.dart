@@ -8,4 +8,8 @@ class Strings {
   static const String myFavoriteText = "مقالات مورد علاقه من";
   static const String myFavoritePadCast = "پادکست های مورد علاقه من";
   static const String logOut = "خروج از حساب کاربری";
+  static const String welcome = "به ویرا خوش اومدید";
+  static const String insertYourEmail = "لطفا ایمیل خودت رو وارد کن";
+  static const String welcomeText = """برای ارسال مقاله و پادکست باید حتما 
+  ثبت نام کنی""";
 }

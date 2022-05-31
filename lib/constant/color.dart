@@ -13,6 +13,8 @@ class SolidColors{
   static const Color bgProfileFooter = Color.fromARGB(255, 233, 233, 233);
   static const Color appBar = Color.fromARGB(255, 233, 233, 233);
   static const Color bgButtonProfile = Color.fromARGB(255, 255, 255, 255);
+  static const Color btnOnPressed = Color.fromARGB(255, 55, 3, 122);
+  static const Color hintText = Color.fromARGB(255, 219, 219, 219);
 }
 
 class GradiantColors{

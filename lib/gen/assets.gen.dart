@@ -81,6 +81,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/image-news.jpg
   AssetGenImage get imageNews =>
       const AssetGenImage('assets/images/image-news.jpg');
+
+  /// File path: assets/images/vira-welcome.png
+  AssetGenImage get viraWelcome =>
+      const AssetGenImage('assets/images/vira-welcome.png');
 }
 
 class $AssetsLogoGen {

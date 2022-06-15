@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:vira_app/component.dart';
 import 'package:vira_app/constant/string.dart';
+import 'package:vira_app/constant/styles/textstyle.dart';
 import '../constant/color.dart';
 import '../models/data_models.dart';
 //! Imports  -----------------------
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({
@@ -16,6 +18,7 @@ class HomeScreen extends StatelessWidget {
   final TextTheme textTheme;
   final Size size;
   //* Variables -----------------
+  
   @override
   Widget build(BuildContext context) {
     //? Return ------------------
@@ -25,31 +28,44 @@ class HomeScreen extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            const ViraSizedBox(height: 6.0),
+            const SizedBox(
+              height: 6,
+            ),
             //? ----------------------------
 
-            MostNewsText(textTheme: textTheme),
+            HotNewsText(textTheme: textTheme),
 
-            const ViraSizedBox(height: 6.0),
             //? ----------------------------
-            MoreNewsPostList(size: size, textTheme: textTheme),
+            const SizedBox(
+              height: 6,
+            ),
+            
+            //? ----------------------------
+            HotNewsPostList(size: size, textTheme: textTheme),
 
-            const ViraSizedBox(height: 6),
+            //? ----------------------------
+            const SizedBox(height: 6,),
+
             //? ----------------------------
             const HashTagList(),
 
-            const ViraSizedBox(height: 8.0),
             //? ----------------------------
-            NewText(textTheme: textTheme),
+            const SizedBox(height: 8,),
 
-            NewPostList(size: size, textTheme: textTheme),
-
-            NewPadCast(textTheme: textTheme),
-
-            NewPadCastList(size: size),
-
-            const ViraSizedBox(height: 70.0),
             //? ----------------------------
+            RecentNewsText(textTheme: textTheme),
+
+            //? ----------------------------
+            RecentNewsPostList(size: size, textTheme: textTheme),
+
+            //? ----------------------------
+            RecentPadCastText(textTheme: textTheme),
+
+            //? ----------------------------
+            RecentPadCastPostList(size: size),
+
+            //? ----------------------------
+            const SizedBox(height: 70,),
           ],
         ),
       ),
@@ -59,8 +75,9 @@ class HomeScreen extends StatelessWidget {
 
 //! WIdgets -----------------
 
-class NewPadCast extends StatelessWidget {
-  const NewPadCast({
+//? text widget for recent padcast
+class RecentPadCastText extends StatelessWidget {
+  const RecentPadCastText({
     Key? key,
     required this.textTheme,
   }) : super(key: key);
@@ -69,19 +86,20 @@ class NewPadCast extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return const Padding(
+      padding: EdgeInsets.all(8.0),
       child: Align(
         alignment: Alignment.centerRight,
         child: Text(
-          Strings.newPadCast,
-          style: textTheme.headline2,
+          Strings.recentPadCastText,
+          style: TextStyles.styleHeadline,
         ),
       ),
     );
   }
 }
 
+//? list of hashtags
 class HashTagList extends StatelessWidget {
   const HashTagList({
     Key? key,
@@ -93,29 +111,7 @@ class HashTagList extends StatelessWidget {
       height: 60,
       child: ListView.builder(
         itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              height: 60,
-              decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(25),
-                  ),
-                  border: Border.all(color: Colors.black),
-                  color: SolidColors.hashTagColor),
-              child: Padding(
-                padding: const EdgeInsets.only(right: 12.0, left: 12),
-                child: Row(
-                  children: [
-                    const Icon(Icons.tag),
-                    Text(
-                      tagList[index].title!,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
+          return ViraMainTags(index: index);
         },
         physics: const BouncingScrollPhysics(),
         itemCount: tagList.length,
@@ -125,8 +121,9 @@ class HashTagList extends StatelessWidget {
   }
 }
 
-class NewText extends StatelessWidget {
-  const NewText({
+//? text widget fpr recent news
+class RecentNewsText extends StatelessWidget {
+  const RecentNewsText({
     Key? key,
     required this.textTheme,
   }) : super(key: key);
@@ -135,18 +132,19 @@ class NewText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 12.0, bottom: 6.0),
+    return const Padding(
+      padding: EdgeInsets.only(right: 12.0, bottom: 6.0),
       child: Align(
-        child: Text(Strings.newNews, style: textTheme.headline2),
+        child: Text(Strings.recentNewsText, style: TextStyles.styleHeadline),
         alignment: Alignment.centerRight,
       ),
     );
   }
 }
 
-class MostNewsText extends StatelessWidget {
-  const MostNewsText({
+//? text widget fot hot news
+class HotNewsText extends StatelessWidget {
+  const HotNewsText({
     Key? key,
     required this.textTheme,
   }) : super(key: key);
@@ -155,15 +153,16 @@ class MostNewsText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      Strings.mostNews,
-      style: textTheme.headline1,
+    return const Text(
+      Strings.howNewsText,
+      style: TextStyles.styleHotNews,
     );
   }
 }
 
-class MoreNewsPostList extends StatelessWidget {
-  const MoreNewsPostList(
+//? list of hot news post
+class HotNewsPostList extends StatelessWidget {
+  const HotNewsPostList(
       {Key? key, required this.size, required this.textTheme})
       : super(key: key);
   final TextTheme textTheme;
@@ -174,7 +173,7 @@ class MoreNewsPostList extends StatelessWidget {
       height: size.height / 2.2,
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
-        itemBuilder: (context, index) {
+        itemBuilder: ((context, index) {
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Stack(
@@ -213,7 +212,7 @@ class MoreNewsPostList extends StatelessWidget {
                               const EdgeInsets.only(right: 8, left: 16, top: 8),
                           child: Text(
                             newsPost[index].title.toString(),
-                            style: textTheme.headline3,
+                            style: TextStyles.styleTitleHotNewsPostList,
                             maxLines: 3,
                           ),
                         ),
@@ -223,11 +222,11 @@ class MoreNewsPostList extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(newsPost[index].writer.toString(),
-                                  style: textTheme.bodyText2),
+                                  style: TextStyles.styleWritreAndViewHotNewsPostList),
                               Row(
                                 children: [
                                   Text(newsPost[index].views.toString(),
-                                      style: textTheme.bodyText1),
+                                      style: TextStyles.styleWritreAndViewHotNewsPostList),
                                   const SizedBox(
                                     width: 6,
                                   ),
@@ -247,7 +246,7 @@ class MoreNewsPostList extends StatelessWidget {
               ],
             ),
           );
-        },
+        }),
         itemCount: newsPost.length,
         scrollDirection: Axis.horizontal,
       ),
@@ -255,8 +254,9 @@ class MoreNewsPostList extends StatelessWidget {
   }
 }
 
-class NewPostList extends StatelessWidget {
-  const NewPostList({Key? key, required this.size, required this.textTheme})
+//? list of recent news post
+class RecentNewsPostList extends StatelessWidget {
+  const RecentNewsPostList({Key? key, required this.size, required this.textTheme})
       : super(key: key);
 
   final Size size;
@@ -297,7 +297,7 @@ class NewPostList extends StatelessWidget {
                             gradient: LinearGradient(
                               colors: GradiantColors.blogPost,
                               begin: Alignment.bottomCenter,
-                              end: Alignment.topCenter,
+                              end: Alignment.center,
                             ),
                           ),
                         ),
@@ -310,11 +310,11 @@ class NewPostList extends StatelessWidget {
                             children: [
                               Text(
                                 newsPost[index].writer.toString(),
-                                style: textTheme.subtitle1,
+                                style: TextStyles.styleWriterAndDateNewPostList,
                               ),
                               Text(
                                 newsPost[index].date.toString(),
-                                style: textTheme.subtitle1,
+                                style: TextStyles.styleWriterAndDateNewPostList,
                               ),
                             ],
                           ),
@@ -329,7 +329,8 @@ class NewPostList extends StatelessWidget {
                     newsPost[index].title.toString(),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
-                    style: textTheme.bodyText1,
+                    style: TextStyles.styleTitleNewPostList,
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ],
@@ -343,8 +344,9 @@ class NewPostList extends StatelessWidget {
   }
 }
 
-class NewPadCastList extends StatelessWidget {
-  const NewPadCastList({Key? key, required this.size}) : super(key: key);
+//? list of recent padcast post
+class RecentPadCastPostList extends StatelessWidget {
+  const RecentPadCastPostList({Key? key, required this.size}) : super(key: key);
   final Size size;
   @override
   Widget build(BuildContext context) {
@@ -352,27 +354,25 @@ class NewPadCastList extends StatelessWidget {
       height: size.height / 3.5,
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
-        itemBuilder: (context, index) {
+        itemBuilder: ((context, index) {
           return Padding(
             padding: EdgeInsets.only(right: index == 0 ? 0 : 8),
             child: Column(
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: SizedBox(
+                  child: Container(
                     height: size.height / 5.3,
                     width: size.width / 2.4,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(16.0),
-                        ),
-                        image: DecorationImage(
-                            image: NetworkImage(
-                              padCastList[index].imageUrl!,
-                            ),
-                            fit: BoxFit.cover),
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(16.0),
                       ),
+                      image: DecorationImage(
+                          image: NetworkImage(
+                            padCastList[index].imageUrl!,
+                          ),
+                          fit: BoxFit.cover),
                     ),
                   ),
                 ),
@@ -382,13 +382,14 @@ class NewPadCastList extends StatelessWidget {
                     alignment: Alignment.center,
                     child: Text(
                       padCastList[index].title.toString(),
+                      style: TextStyles.styleTitlePadCastPostList,
                     ),
                   ),
                 ),
               ],
             ),
           );
-        },
+        }),
         scrollDirection: Axis.horizontal,
         itemCount: padCastList.length,
       ),

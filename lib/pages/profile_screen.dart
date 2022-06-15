@@ -4,6 +4,8 @@ import 'package:vira_app/constant/color.dart';
 import 'package:vira_app/constant/string.dart';
 import 'package:vira_app/gen/assets.gen.dart';
 
+import '../constant/styles/textstyle.dart';
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key, required this.size, required this.textTheme})
       : super(key: key);
@@ -22,177 +24,13 @@ class ProfileScreen extends StatelessWidget {
         child: Column(
           children: [
             PersonalInfo(size: size, textTheme: textTheme),
-            //? Header ------------
-
-            Container(
-              width: size.width,
-              height: size.height / 1.4,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(25),
-                ),
-                color: SolidColors.bgProfileFooter,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 24.0),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        width: size.width / 1.1,
-                        height: 90,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          color: SolidColors.bgButtonProfile,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            SizedBox(
-                              width: 220,
-                              child: Row(
-                                children: [
-                                  // Container(
-                                  //   height: 38,
-                                  //   width: 38,
-                                  //   decoration: BoxDecoration(
-                                  //       borderRadius: const BorderRadius.all(
-                                  //         Radius.circular(5),
-                                  //       ),
-                                  //       color:
-                                  //           Colors.purple[200]?.withOpacity(0.5)),
-                                  //   child: ImageIcon(Assets.icons.paper,
-                                  //   size: 1,),
-                                  // ),
-                                  const SizedBox(
-                                    width: 8,
-                                  ),
-                                  Text(
-                                    Strings.myFavoriteText,
-                                    style: textTheme.bodyText2,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.arrow_forward_ios_rounded),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    ViraDivider(size: size),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        width: size.width / 1.1,
-                        height: 90,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          color: SolidColors.bgButtonProfile,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            SizedBox(
-                              width: 220,
-                              child: Row(
-                                children: [
-                                  // Container(
-                                  //   height: 38,
-                                  //   width: 38,
-                                  //   decoration: BoxDecoration(
-                                  //       borderRadius: const BorderRadius.all(
-                                  //         Radius.circular(5),
-                                  //       ),
-                                  //       color:
-                                  //           Colors.purple[200]?.withOpacity(0.5)),
-                                  //   child: ImageIcon(Assets.icons.padcast,
-                                  //   size: 10,),
-                                  // ),
-                                  const SizedBox(
-                                    width: 8,
-                                  ),
-                                  Text(
-                                    Strings.myFavoritePadCast,
-                                    style: textTheme.bodyText2,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.arrow_forward_ios_rounded),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    ViraDivider(size: size),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        width: size.width / 1.1,
-                        height: 90,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          color: SolidColors.bgButtonProfile,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            SizedBox(
-                              width: 220,
-                              child: Row(
-                                children: [
-                                  // Container(
-                                  //   height: 38,
-                                  //   width: 38,
-                                  //   decoration: BoxDecoration(
-                                  //       borderRadius: const BorderRadius.all(
-                                  //         Radius.circular(5),
-                                  //       ),
-                                  //       color:
-                                  //           Colors.purple[200]?.withOpacity(0.5)),
-                                  //   child: ImageIcon(Assets.icons.power),
-                                  // ),
-                                  const SizedBox(
-                                    width: 8,
-                                  ),
-                                  Text(
-                                    Strings.logOut,
-                                    style: textTheme.bodyText2,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: const Icon(Icons.arrow_forward_ios_rounded),
-                            ),
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            )
+            BottomScreen(size: size)
           ],
         ),
       ),
     );
   }
 }
-
 
 
 //! Widgets ---------------
@@ -228,7 +66,7 @@ class PersonalInfo extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image(
-                    image: Assets.images.avatar,
+                    image: AssetImage(Assets.images.avatar.path),
                     height: 80,
                   ),
                   const SizedBox(
@@ -236,14 +74,14 @@ class PersonalInfo extends StatelessWidget {
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+                    children: const [
                       Text(
                         'سیدمحمد رضاتوفیقی',
-                        style: textTheme.headline3,
+                        style: TextStyles.styleUserName,
                       ),
                       Text(
                         'mrtofxn@gmail.com',
-                        style: textTheme.bodyText1,
+                        style: TextStyles.styleBodyNormalText,
                       ),
                     ],
                   ),
@@ -256,11 +94,47 @@ class PersonalInfo extends StatelessWidget {
               child: IconButton(
                 color: Colors.black,
                 icon: ImageIcon(
-                  Assets.icons.settings,
+                  AssetImage(Assets.icons.settings.path),
                 ),
                 onPressed: () {},
               ),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class BottomScreen extends StatelessWidget {
+  const BottomScreen({
+    Key? key,
+    required this.size,
+  }) : super(key: key);
+
+  final Size size;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: size.width,
+      height: size.height / 1.4,
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(25),
+          topRight: Radius.circular(25),
+        ),
+        color: SolidColors.bgProfileFooter,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 24.0),
+        child: Column(
+          children: [
+            ViraTextAndButton(title: Strings.myFavoriteArticleText, onTap: () {}),
+            ViraDivider(size: size),
+            ViraTextAndButton(title: Strings.myFavoritePadCastText, onTap: () {}),
+            ViraDivider(size: size),
+            ViraTextAndButton(title: Strings.logOutText, onTap: () {}),
           ],
         ),
       ),

@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image(
-                image: Assets.logo.vTech,
+                image: AssetImage( Assets.logo.vTech.path),
                 height: 80.0,
               ),
               const SizedBox(

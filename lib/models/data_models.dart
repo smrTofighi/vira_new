@@ -114,14 +114,15 @@ List<NewsModel> newsPost = [
 
 List<HashTagModel> tagList = [
   HashTagModel(title: 'برنامه نویسی'),
-  HashTagModel(title: 'اندروید'),
-  HashTagModel(title: 'اپل'),
-  HashTagModel(title: 'شیائومی'),
+  HashTagModel(title: 'موبایل'),
+  HashTagModel(title: 'هوش مصنوعی'),
+  HashTagModel(title: 'بازی'),
   HashTagModel(title: 'خودرو'),
-  HashTagModel(title: 'تبلت'),
+  HashTagModel(title: 'گرافیک'),
   HashTagModel(title: 'ارز دیجیتال'),
+  HashTagModel(title: 'اینترنت اشیاء'),
 ];
-
+List<HashTagModel> selecedTagList = [];
 List<PadCastModel> padCastList = [
   PadCastModel(
       id: 1,

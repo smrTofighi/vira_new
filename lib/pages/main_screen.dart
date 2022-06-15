@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:vira_app/component.dart';
 import 'package:vira_app/constant/color.dart';
+import 'package:vira_app/constant/styles/textstyle.dart';
 import 'package:vira_app/gen/assets.gen.dart';
+import 'package:vira_app/pages/login_screen.dart';
 import 'package:vira_app/pages/profile_screen.dart';
 import 'home_screen.dart';
 //! Imports ---------------------
@@ -11,6 +15,8 @@ class MainScreen extends StatefulWidget {
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
+
+final GlobalKey<ScaffoldState> _key = GlobalKey();
 
 class _MainScreenState extends State<MainScreen> {
   var selectedIndexPage = 0;
@@ -23,7 +29,48 @@ class _MainScreenState extends State<MainScreen> {
     //! Return ------------------
     return SafeArea(
       child: Scaffold(
-        drawer: const Drawer(),
+        key: _key,
+        drawer: Drawer(
+          backgroundColor: SolidColors.appBar,
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 6, 20, 0),
+              child: ListView(
+                children: [
+                  ViraListTileDrawer(
+                      title: 'سیدمحمد رضاتوفیقی',
+                      icon: Assets.icons.user.path,
+                      onTap: () {}),
+                  const ViraDividerDrawer(),
+                  ViraListTileDrawer(
+                      title: 'آرشیو محتوا',
+                      icon: Assets.icons.bookmark.path,
+                      onTap: () {}),
+                  ViraListTileDrawer(
+                      title: 'معرفی به دوستان',
+                      icon: Assets.icons.share.path,
+                      onTap: () {}),
+                  ViraListTileDrawer(
+                      title: 'نسخه جدید',
+                      icon: Assets.icons.update.path,
+                      onTap: () {}),
+                  ViraListTileDrawer(
+                      title: 'درباره ما',
+                      icon: Assets.icons.about.path,
+                      onTap: () {}),
+                  ViraListTileDrawer(
+                      title: 'تماس با ما',
+                      icon: Assets.icons.contactUs.path,
+                      onTap: () {}),
+                  ViraListTileDrawer(
+                      title: 'خروج',
+                      icon: Assets.icons.exit.path,
+                      onTap: () {}),
+                ],
+              ),
+            ),
+          ),
+        ),
         //? AppBar --------------
         appBar: AppBar(
           backgroundColor: SolidColors.appBar,
@@ -34,21 +81,25 @@ class _MainScreenState extends State<MainScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
-                  color: Colors.black,
-                  onPressed: () {
-                    Scaffold.of(context).openDrawer();
-                  },
-                  icon: ImageIcon(
-                    Assets.icons.menu,
-                    size: 20,
-                  )),
-              Image(
-                image: Assets.logo.vTech,
-                height: 50,
+                color: Colors.black,
+                onPressed: (() {
+                  _key.currentState!.openDrawer();
+                }),
+                icon: ImageIcon(
+                  AssetImage(Assets.icons.menu.path),
+                  size: 20,
+                ),
               ),
-              Text(
+              Padding(
+                padding: const EdgeInsets.only(right: 12.0),
+                child: Image(
+                  image: AssetImage(Assets.logo.vTech.path),
+                  height: 50,
+                ),
+              ),
+              const Text(
                 '01/03/04',
-                style: textTheme.bodyText1,
+                style: TextStyles.styleDateAppBar,
               ),
             ],
           ),
@@ -111,6 +162,7 @@ class BottomNavigation extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Container(
         decoration: BoxDecoration(
+          color: SolidColors.bottomNavoff,
           boxShadow: [
             BoxShadow(
               color: ShadowColors.shadowNav,
@@ -133,56 +185,18 @@ class BottomNavigation extends StatelessWidget {
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 350),
                   height: size.height / 13.5,
-                  color: index == 4
+                  color: index == 0
                       ? SolidColors.bottomNavon
                       : SolidColors.bottomNavoff,
                   child: IconButton(
-                    color: index == 4
+                    color: index == 0
                         ? SolidColors.iconWhite
                         : SolidColors.iconBlack,
-                    onPressed: () => changeScreen(4),
+                    onPressed: () => changeScreen(0),
                     icon: ImageIcon(
-                      index == 4 ? Assets.icons.userFill : Assets.icons.user,
-                      size: 20,
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 350),
-                  height: size.height / 13.5,
-                  color: index == 3
-                      ? SolidColors.bottomNavon
-                      : SolidColors.bottomNavoff,
-                  child: IconButton(
-                    color: index == 3
-                        ? SolidColors.iconWhite
-                        : SolidColors.iconBlack,
-                    onPressed: () => changeScreen(3),
-                    icon: ImageIcon(
-                      index == 3
-                          ? Assets.icons.bookmarkFill
-                          : Assets.icons.bookmark,
-                      size: 20,
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 350),
-                  height: size.height / 13.5,
-                  color: index == 2
-                      ? SolidColors.bottomNavon
-                      : SolidColors.bottomNavoff,
-                  child: IconButton(
-                    color: index == 2
-                        ? SolidColors.iconWhite
-                        : SolidColors.iconBlack,
-                    onPressed: () => changeScreen(2),
-                    icon: ImageIcon(
-                      index == 2 ? Assets.icons.addFill : Assets.icons.add,
+                      AssetImage(index == 0
+                          ? Assets.icons.homeFill.path
+                          : Assets.icons.home.path),
                       size: 20,
                     ),
                   ),
@@ -201,9 +215,11 @@ class BottomNavigation extends StatelessWidget {
                         : SolidColors.iconBlack,
                     onPressed: () => changeScreen(1),
                     icon: ImageIcon(
-                      index == 1
-                          ? Assets.icons.searchFill
-                          : Assets.icons.search,
+                      AssetImage(
+                        index == 1
+                            ? Assets.icons.searchFill.path
+                            : Assets.icons.search.path,
+                      ),
                       size: 20,
                     ),
                   ),
@@ -213,16 +229,77 @@ class BottomNavigation extends StatelessWidget {
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 350),
                   height: size.height / 13.5,
-                  color: index == 0
+                  color: index == 2
                       ? SolidColors.bottomNavon
                       : SolidColors.bottomNavoff,
                   child: IconButton(
-                    color: index == 0
+                    color: index == 2
                         ? SolidColors.iconWhite
                         : SolidColors.iconBlack,
-                    onPressed: () => changeScreen(0),
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: const Text(
+                            'برای ایجاد مقاله ابتدا وارد حساب خود شوید', style: TextStyles.styleBodyNormalText,
+                          ),
+                          action: SnackBarAction(
+                              label: 'ورود',
+                              textColor: SolidColors.themeColor,
+                              onPressed: () {
+                                Get.back();
+                                Get.to(const LogInScreen());
+                              }),
+                              backgroundColor: SolidColors.appBar,
+                        ),
+                      );
+                      // Get.to(const RegisterIntoScreen());
+                    },
                     icon: ImageIcon(
-                      index == 0 ? Assets.icons.homeFill : Assets.icons.home,
+                      AssetImage(index == 2
+                          ? Assets.icons.addFill.path
+                          : Assets.icons.add.path),
+                      size: 20,
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 350),
+                  height: size.height / 13.5,
+                  color: index == 3
+                      ? SolidColors.bottomNavon
+                      : SolidColors.bottomNavoff,
+                  child: IconButton(
+                    color: index == 3
+                        ? SolidColors.iconWhite
+                        : SolidColors.iconBlack,
+                    onPressed: () => changeScreen(3),
+                    icon: ImageIcon(
+                      AssetImage(index == 3
+                          ? Assets.icons.bookmarkFill.path
+                          : Assets.icons.bookmark.path),
+                      size: 20,
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 350),
+                  height: size.height / 13.5,
+                  color: index == 4
+                      ? SolidColors.bottomNavon
+                      : SolidColors.bottomNavoff,
+                  child: IconButton(
+                    color: index == 4
+                        ? SolidColors.iconWhite
+                        : SolidColors.iconBlack,
+                    onPressed: () => changeScreen(4),
+                    icon: ImageIcon(
+                      AssetImage(index == 4
+                          ? Assets.icons.userFill.path
+                          : Assets.icons.user.path),
                       size: 20,
                     ),
                   ),

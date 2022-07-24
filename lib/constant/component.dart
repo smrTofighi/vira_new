@@ -1,26 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vira_app/constant/color.dart';
-import 'constant/string.dart';
-import 'constant/styles/textstyle.dart';
-import 'gen/assets.gen.dart';
-import 'models/data_models.dart';
+import 'string.dart';
+import 'styles/textstyle.dart';
+import '../gen/assets.gen.dart';
+import '../models/data_models.dart';
 
-class ViraDivider extends StatelessWidget {
-  const ViraDivider({Key? key, required this.size}) : super(key: key);
-  final Size size;
 
-  @override
-  Widget build(BuildContext context) {
-    return Divider(
-      thickness: 1.5,
-      indent: size.width / 16,
-      endIndent: size.width / 16,
-      color: SolidColors.dividerColor,
-    );
-  }
-}
 
+//? is the divider for drawer
 class ViraDividerDrawer extends StatelessWidget {
   const ViraDividerDrawer({Key? key}) : super(key: key);
 
@@ -33,6 +21,7 @@ class ViraDividerDrawer extends StatelessWidget {
   }
 }
 
+//? is the list tile for drawer
 class ViraListTileDrawer extends StatelessWidget {
   const ViraListTileDrawer(
       {Key? key, required this.title, required this.icon, required this.onTap})
@@ -66,6 +55,7 @@ class ViraListTileDrawer extends StatelessWidget {
   }
 }
 
+//? is the main tags for create in the list
 class ViraMainTags extends StatelessWidget {
   const ViraMainTags({Key? key, required this.index}) : super(key: key);
   final int index;
@@ -79,27 +69,25 @@ class ViraMainTags extends StatelessWidget {
             borderRadius: const BorderRadius.all(
               Radius.circular(25),
             ),
-            border: Border.all(color: Colors.black),
+            border: Border.all(color: SolidColors.hashtagBorderColor),
             color: SolidColors.hashTagColor),
         child: Padding(
-          padding: const EdgeInsets.only(right: 12.0, left: 12),
-          child: Row(
-            children: [
-              const Icon(Icons.tag),
-              const SizedBox(
-                width: 2,
-              ),
-              Text(
+          padding: const EdgeInsets.only(right: 20.0, left: 20.0),
+          child:Center(
+            child: Text(
                 tagList[index].title!,
+                style: const TextStyle(
+                  color: SolidColors.hashtagBorderColor
+                ),
               ),
-            ],
-          ),
+          )
         ),
       ),
     );
   }
 }
 
+//? is the elevated button with icons => for signup with google
 class ViraElevatedButtonIcon extends StatelessWidget {
   const ViraElevatedButtonIcon({
     Key? key,
@@ -125,6 +113,7 @@ class ViraElevatedButtonIcon extends StatelessWidget {
   }
 }
 
+//? is the textfield
 class ViraTextField extends StatelessWidget {
   const ViraTextField(
       {Key? key, required this.cursorColor, required this.decoration})
@@ -141,6 +130,7 @@ class ViraTextField extends StatelessWidget {
   }
 }
 
+//? is the elevated button
 class ViraElevatedButton extends StatelessWidget {
   const ViraElevatedButton(
       {Key? key, required this.text, required this.onPressed})
@@ -159,6 +149,7 @@ class ViraElevatedButton extends StatelessWidget {
   }
 }
 
+//? is the Row with text and text button => for example in signup screen you have an account? login
 class ViraRowTextAndButtonText extends StatelessWidget {
   const ViraRowTextAndButtonText(
       {Key? key,
@@ -190,6 +181,7 @@ class ViraRowTextAndButtonText extends StatelessWidget {
   }
 }
 
+//? is the text and button for profile screen
 class ViraTextAndButton extends StatelessWidget {
   const ViraTextAndButton({Key? key, required this.title, required this.onTap})
       : super(key: key);

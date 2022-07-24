@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:get/get.dart';
-import 'package:vira_app/component.dart';
+import 'package:vira_app/constant/component.dart';
 import 'package:vira_app/constant/color.dart';
 import 'package:vira_app/constant/styles/textfield.dart';
 import 'package:vira_app/gen/assets.gen.dart';
@@ -84,16 +84,7 @@ class LogInScreen extends StatelessWidget {
                 ),
 
                 //? ----------------------------
-                SizedBox(
-                  width: Get.width,
-                  child: ViraRowTextAndButtonText(
-                    text: Strings.youDontHaveAnAccount,
-                    textButton: Strings.signupText,
-                    onPressed: (() {
-                      Get.off(const SignUpScreen());
-                    }),
-                  ),
-                )
+                const RowTextAndButtonSignup()
               ],
             ),
           ),
@@ -103,8 +94,28 @@ class LogInScreen extends StatelessWidget {
   }
 }
 
+//! Widgets
 
-//! Widgets 
+//? text and button text you dont have an account
+class RowTextAndButtonSignup extends StatelessWidget {
+  const RowTextAndButtonSignup({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: Get.width,
+      child: ViraRowTextAndButtonText(
+        text: Strings.youDontHaveAnAccount,
+        textButton: Strings.signupText,
+        onPressed: (() {
+          Get.off(const SignUpScreen());
+        }),
+      ),
+    );
+  }
+}
 
 //? is the login button
 class ElevatedButtonLogin extends StatelessWidget {
@@ -127,7 +138,7 @@ class ElevatedButtonLogin extends StatelessWidget {
   }
 }
 
-//? is the login button with google and facebook 
+//? is the login button with google and facebook
 class RowButtonsGoogleAndFacebook extends StatelessWidget {
   const RowButtonsGoogleAndFacebook({
     Key? key,
@@ -148,7 +159,9 @@ class RowButtonsGoogleAndFacebook extends StatelessWidget {
             child: ViraElevatedButtonIcon(
               iconPath: Assets.icons.google.path,
               color: SolidColors.googleColor,
-              onPressed: (() {}),
+              onPressed: (() {
+                _showSnackBarUnable(context, 'کاربر گرامی این قابلیت هنوز فعال نشده است');
+              }),
             ),
           ),
           const SizedBox(
@@ -160,7 +173,9 @@ class RowButtonsGoogleAndFacebook extends StatelessWidget {
             child: ViraElevatedButtonIcon(
               iconPath: Assets.icons.faceBook.path,
               color: SolidColors.facebookColor,
-              onPressed: (() {}),
+              onPressed: (() {
+                 _showSnackBarUnable(context, 'کاربر گرامی این قابلیت هنوز فعال نشده است');
+              }),
             ),
           ),
         ],
@@ -200,3 +215,17 @@ class ViraImage extends StatelessWidget {
     );
   }
 }
+
+
+void _showSnackBarUnable(BuildContext context, String message){
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+        content: Text(
+          message,
+          style: TextStyles.styleBodyNormalText,
+        ),
+        backgroundColor: SolidColors.snackBarColor,
+        ),
+  );
+}
+

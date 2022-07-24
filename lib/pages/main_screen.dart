@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:vira_app/component.dart';
+import 'package:vira_app/constant/component.dart';
 import 'package:vira_app/constant/color.dart';
+import 'package:vira_app/constant/string.dart';
 import 'package:vira_app/constant/styles/textstyle.dart';
 import 'package:vira_app/gen/assets.gen.dart';
 import 'package:vira_app/pages/login_screen.dart';
 import 'package:vira_app/pages/profile_screen.dart';
 import 'home_screen.dart';
-//! Imports ---------------------
+//! Libraries ---------------------
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
+// is the key for open drawer
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 
 class _MainScreenState extends State<MainScreen> {
@@ -29,7 +31,9 @@ class _MainScreenState extends State<MainScreen> {
     //! Return ------------------
     return SafeArea(
       child: Scaffold(
+        //? key
         key: _key,
+        //? Drawer
         drawer: Drawer(
           backgroundColor: SolidColors.appBar,
           child: SafeArea(
@@ -142,8 +146,8 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 }
-//! Main Screen -----------------
 
+//! Bottom Navigation -----------
 class BottomNavigation extends StatelessWidget {
   const BottomNavigation(
       {Key? key,
@@ -151,10 +155,12 @@ class BottomNavigation extends StatelessWidget {
       required this.index,
       required this.changeScreen})
       : super(key: key);
+  //* Constructor
 
   final Size size;
   final int index;
   final Function(int) changeScreen;
+  //* Variables
 
   @override
   Widget build(BuildContext context) {
@@ -181,6 +187,7 @@ class BottomNavigation extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
+              //? home-0
               Expanded(
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 350),
@@ -202,6 +209,8 @@ class BottomNavigation extends StatelessWidget {
                   ),
                 ),
               ),
+
+              //? search-1
               Expanded(
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 350),
@@ -225,6 +234,8 @@ class BottomNavigation extends StatelessWidget {
                   ),
                 ),
               ),
+
+              //? add acrticle-2
               Expanded(
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 350),
@@ -237,22 +248,14 @@ class BottomNavigation extends StatelessWidget {
                         ? SolidColors.iconWhite
                         : SolidColors.iconBlack,
                     onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: const Text(
-                            'برای ایجاد مقاله ابتدا وارد حساب خود شوید', style: TextStyles.styleBodyNormalText,
-                          ),
-                          action: SnackBarAction(
-                              label: 'ورود',
-                              textColor: SolidColors.themeColor,
-                              onPressed: () {
-                                Get.back();
-                                Get.to(const LogInScreen());
-                              }),
-                              backgroundColor: SolidColors.appBar,
-                        ),
-                      );
-                      // Get.to(const RegisterIntoScreen());
+                      _showSnackBarLogin(
+                          context,
+                          Strings.pleaseLoginForCreateArticleText,
+                          Strings.loginText, (() {
+                        Get.back();
+                        Get.to(const LogInScreen());
+                      }));
+
                     },
                     icon: ImageIcon(
                       AssetImage(index == 2
@@ -263,6 +266,8 @@ class BottomNavigation extends StatelessWidget {
                   ),
                 ),
               ),
+
+              //? bookmarks-3
               Expanded(
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 350),
@@ -284,6 +289,8 @@ class BottomNavigation extends StatelessWidget {
                   ),
                 ),
               ),
+
+              //? profile-4
               Expanded(
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 350),
@@ -312,4 +319,31 @@ class BottomNavigation extends StatelessWidget {
     );
   }
 }
-//! Bottom Navigation -----------
+
+//! Functions
+
+void _showSnackBarLogin(BuildContext context, String message, String textButton,
+    Function() onPressed) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(
+        message,
+        style: TextStyles.styleBodyNormalText,
+      ),
+      action: SnackBarAction(
+          label: textButton,
+          textColor: SolidColors.themeColor,
+          onPressed: onPressed),
+      backgroundColor: SolidColors.snackBarColor,
+    ),
+  );
+
+  // Get.snackbar('نیاز به حساب کاربری', message,
+  //     mainButton: TextButton(
+  //       onPressed: onPressed,
+  //       child: Text(textButton)
+  //     ),
+  //   backgroundColor: SolidColors.snackBarColor,
+  //   snackPosition: SnackPosition.BOTTOM
+  // );
+}

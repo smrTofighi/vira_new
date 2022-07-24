@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vira_app/component.dart';
+import 'package:vira_app/constant/component.dart';
 import 'package:vira_app/constant/string.dart';
 import 'package:vira_app/constant/styles/textstyle.dart';
 import '../constant/color.dart';

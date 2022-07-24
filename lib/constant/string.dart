@@ -3,6 +3,7 @@ class Strings {
   static const String howNewsText = "داغ ترین خبر ها";
   static const String recentNewsText = "جدید ترین خبر ها";
   static const String recentPadCastText = "جدید ترین پادکست ها";
+  static const String pleaseLoginForCreateArticleText = "برای ایجاد مقاله ابتدا وارد حساب خود شوید";
 
   //* Profile Screen
   static const String myFavoriteArticleText = "مقالات مورد علاقه من";

@@ -29,15 +29,16 @@ class _SplashScreenState extends State<SplashScreen> {
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image(
-                image: AssetImage( Assets.logo.vTech.path),
-                height: 80.0,
-              ),
-              const SizedBox(
+            children:const  [
+              ViraImage(),
+              
+              //? --------------------------
+              SizedBox(
                 height: 20,
               ),
-              const SpinKitThreeBounce(
+              
+              //? --------------------------
+              SpinKitThreeBounce(
                 color: SolidColors.themeColor,
                 size: 32.0,
               )
@@ -45,6 +46,20 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class ViraImage extends StatelessWidget {
+  const ViraImage({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Image(
+      image: AssetImage( Assets.logo.vTech.path),
+      height: 80.0,
     );
   }
 }

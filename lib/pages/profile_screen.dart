@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vira_app/component.dart';
+import 'package:vira_app/constant/component.dart';
 import 'package:vira_app/constant/color.dart';
 import 'package:vira_app/constant/string.dart';
 import 'package:vira_app/gen/assets.gen.dart';
@@ -23,7 +23,10 @@ class ProfileScreen extends StatelessWidget {
         color: SolidColors.themeColor,
         child: Column(
           children: [
+            //? -----------------------------
             PersonalInfo(size: size, textTheme: textTheme),
+
+            //? -----------------------------
             BottomScreen(size: size)
           ],
         ),
@@ -59,6 +62,7 @@ class PersonalInfo extends StatelessWidget {
         ),
         child: Stack(
           children: [
+            //? user name
             Positioned(
               right: 16,
               top: 16,
@@ -88,6 +92,8 @@ class PersonalInfo extends StatelessWidget {
                 ],
               ),
             ),
+
+            //? setting icon
             Positioned(
               left: 0,
               top: 0,
@@ -131,10 +137,13 @@ class BottomScreen extends StatelessWidget {
         child: Column(
           children: [
             ViraTextAndButton(title: Strings.myFavoriteArticleText, onTap: () {}),
-            ViraDivider(size: size),
+            //? -----------------------------
+
             ViraTextAndButton(title: Strings.myFavoritePadCastText, onTap: () {}),
-            ViraDivider(size: size),
+            //? -----------------------------
+            
             ViraTextAndButton(title: Strings.logOutText, onTap: () {}),
+            //? -----------------------------
           ],
         ),
       ),

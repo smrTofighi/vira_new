@@ -1,27 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:vira_app/constant/component.dart';
 import 'package:vira_app/constant/color.dart';
 import 'package:vira_app/constant/string.dart';
 import 'package:vira_app/constant/styles/textstyle.dart';
 import 'package:vira_app/gen/assets.gen.dart';
-import 'package:vira_app/pages/login_screen.dart';
-import 'package:vira_app/pages/profile_screen.dart';
-import 'home_screen.dart';
+import 'package:vira_app/pages/login_page.dart';
+import 'package:vira_app/pages/profile_page.dart';
+import 'home_page.dart';
 //! Libraries ---------------------
-
-class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
-
-  @override
-  State<MainScreen> createState() => _MainScreenState();
-}
 
 // is the key for open drawer
 final GlobalKey<ScaffoldState> _key = GlobalKey();
 
-class _MainScreenState extends State<MainScreen> {
-  var selectedIndexPage = 0;
+class MainPage extends StatelessWidget {
+  RxInt selectedIndexPage = 0.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +47,10 @@ class _MainScreenState extends State<MainScreen> {
                   ViraListTileDrawer(
                       title: 'معرفی به دوستان',
                       icon: Assets.icons.share.path,
-                      onTap: () {}),
+                      onTap: () {
+                        print('object');
+                        Share.share(Strings.shareText);
+                      }),
                   ViraListTileDrawer(
                       title: 'نسخه جدید',
                       icon: Assets.icons.update.path,
@@ -113,15 +110,17 @@ class _MainScreenState extends State<MainScreen> {
           children: [
             //? Screen  ---------
             Positioned.fill(
-              child: IndexedStack(
-                index: selectedIndexPage,
-                children: [
-                  HomeScreen(size: size, textTheme: textTheme),
-                  Container(),
-                  Container(),
-                  Container(),
-                  ProfileScreen(size: size, textTheme: textTheme),
-                ],
+              child: Obx(
+                () => IndexedStack(
+                  index: selectedIndexPage.value,
+                  children: [
+                    HomePage(size: size, textTheme: textTheme),
+                    Container(),
+                    Container(),
+                    Container(),
+                    ProfilePage(size: size, textTheme: textTheme),
+                  ],
+                ),
               ),
             ),
 
@@ -130,15 +129,13 @@ class _MainScreenState extends State<MainScreen> {
               bottom: 20,
               right: 12,
               left: 12,
-              child: BottomNavigation(
-                size: size,
-                index: selectedIndexPage,
-                changeScreen: (value) {
-                  setState(() {
-                    selectedIndexPage = value;
-                  });
-                },
-              ),
+              child: Obx(() => BottomNavigation(
+                    size: size,
+                    index: selectedIndexPage.value,
+                    changeScreen: (value) {
+                      selectedIndexPage.value = value;
+                    },
+                  )),
             ),
           ],
         ),
@@ -253,9 +250,8 @@ class BottomNavigation extends StatelessWidget {
                           Strings.pleaseLoginForCreateArticleText,
                           Strings.loginText, (() {
                         Get.back();
-                        Get.to(const LogInScreen());
+                        Get.to(const LogInPage());
                       }));
-
                     },
                     icon: ImageIcon(
                       AssetImage(index == 2

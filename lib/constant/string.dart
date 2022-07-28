@@ -17,4 +17,16 @@ class Strings {
   static const String signupText = 'ثبت نام';
   static const String youDontHaveAnAccount = 'حساب کاربری نداری؟';
   static const String youHaveAnAccount = 'حساب کاربری داری؟';
+
+
+
+  static const String shareText = """
+یه خبر خوب داریم...
+اگه میخوای هر روز جدیدترین اخبار تکنولوژی مطلع بشی
+یا اینکه خودت به عنوان نویسنده مقاله و خبر بزاری
+حتما اپ ویرانیوز رو نصب کن تا بتونی نویسنده خوبی بشی
+www.vtechco.ir
+""";
+
+
 }
